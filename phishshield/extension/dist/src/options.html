@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield Settings</title>
+    <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <img src="../icons/icon48.png" alt="PhishShield" class="logo">
+                <div class="title-section">
+                    <h1>PhishShield Settings</h1>
+                    <p>Configure your email security preferences</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Welcome section (shown only on first install) -->
+            <section id="welcome-section" class="welcome-section hidden">
+                <h2>🛡️ Welcome to PhishShield!</h2>
+                <p>Your advanced email security companion is now active. PhishShield helps protect you from phishing attacks by analyzing emails in real-time.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <div>
+                            <strong>Real-time Analysis</strong>
+                            <p>Scans emails for phishing indicators as you read them</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚨</span>
+                        <div>
+                            <strong>Risk Assessment</strong>
+                            <p>Provides detailed risk scores and security recommendations</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <div>
+                            <strong>Pattern Detection</strong>
+                            <p>Uses advanced rules to identify suspicious content and links</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Configuration -->
+            <section class="settings-section">
+                <h2>🔗 API Configuration</h2>
+                <div class="setting-group">
+                    <label for="api-url">API Server URL</label>
+                    <input type="url" id="api-url" placeholder="http://localhost:8000">
+                    <small>URL of your PhishShield API server</small>
+                </div>
+                <div class="setting-group">
+                    <button id="test-connection" class="btn btn-secondary">Test Connection</button>
+                    <span id="connection-status" class="status-indicator"></span>
+                </div>
+            </section>
+
+            <!-- Security Settings -->
+            <section class="settings-section">
+                <h2>🔒 Security Settings</h2>
+                
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="auto-scan">
+                        <span class="checkmark"></span>
+                        Automatically scan emails when opened
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <label for="risk-threshold">Notification Threshold</label>
+                    <select id="risk-threshold">
+                        <option value="low">Show notifications for low risk and above</option>
+                        <option value="medium">Show notifications for medium risk and above</option>
+                        <option value="high">Show notifications for high risk only</option>
+                        <option value="critical">Show notifications for critical risk only</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-notifications">
+                        <span class="checkmark"></span>
+                        Show desktop notifications for high-risk emails
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="block-suspicious-links">
+                        <span class="checkmark"></span>
+                        Block clicks on suspicious links (experimental)
+                    </label>
+                </div>
+            </section>
+
+            <!-- Whitelist/Blacklist Management -->
+            <section class="settings-section">
+                <h2>📋 Trust Lists</h2>
+                
+                <div class="list-management">
+                    <div class="list-section">
+                        <h3>Whitelist (Trusted Senders)</h3>
+                        <div class="add-item">
+                            <input type="email" id="whitelist-input" placeholder="Enter email or domain">
+                            <button id="add-whitelist" class="btn btn-primary">Add</button>
+                        </div>
+                        <ul id="whitelist-items" class="trust-list"></ul>
+                    </div>
+
+                    <div class="list-section">
+                        <h3>Blacklist (Blocked Senders)</h3>
+                        <div class="add-item">
+                            <input type="email" id="blacklist-input" placeholder="Enter email or domain">
+                            <button id="add-blacklist" class="btn btn-danger">Add</button>
+                        </div>
+                        <ul id="blacklist-items" class="trust-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OAuth Settings -->
+            <section class="settings-section">
+                <h2>🔐 Email Integration (Optional)</h2>
+                <p>Connect your email accounts for enhanced analysis capabilities:</p>
+                
+                <div class="oauth-section">
+                    <div class="oauth-provider">
+                        <div class="provider-info">
+                            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20">
+                            <span>Gmail Integration</span>
+                        </div>
+                        <button id="gmail-oauth" class="btn btn-secondary">Connect Gmail</button>
+                        <span id="gmail-status" class="status-indicator"></span>
+                    </div>
+
+                    <div class="oauth-provider">
+                        <div class="provider-info">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg" alt="Outlook" width="20">
+                            <span>Outlook Integration</span>
+                        </div>
+                        <button id="outlook-oauth" class="btn btn-secondary">Connect Outlook</button>
+                        <span id="outlook-status" class="status-indicator"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="settings-section">
+                <h2>📊 Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 id="total-scans">0</h3>
+                        <p>Total Scans</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="threats-blocked">0</h3>
+                        <p>Threats Blocked</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="avg-risk-score">0</h3>
+                        <p>Average Risk Score</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="last-scan">Never</h3>
+                        <p>Last Scan</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Settings -->
+            <section class="settings-section">
+                <h2>⚙️ Advanced Settings</h2>
+                
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="debug-mode">
+                        <span class="checkmark"></span>
+                        Enable debug logging
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="analytics">
+                        <span class="checkmark"></span>
+                        Share anonymous usage statistics
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <button id="export-settings" class="btn btn-secondary">Export Settings</button>
+                    <button id="import-settings" class="btn btn-secondary">Import Settings</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+
+                <div class="setting-group">
+                    <button id="reset-settings" class="btn btn-danger">Reset to Defaults</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 PhishShield. Protecting your email security.</p>
+                <div class="footer-links">
+                    <a href="#" id="help-link">Help</a>
+                    <a href="#" id="privacy-link">Privacy Policy</a>
+                    <a href="#" id="support-link">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Status messages -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="options.js"></script>
+</body>
+</html>

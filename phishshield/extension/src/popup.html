@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield - Email Security</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div id="root">
+        <!-- React app will be mounted here -->
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing email security...</p>
+        </div>
+    </div>
+    
+    <!-- Fallback content for when React fails to load -->
+    <noscript>
+        <div class="error">
+            <h3>PhishShield requires JavaScript</h3>
+            <p>Please enable JavaScript to use this extension.</p>
+        </div>
+    </noscript>
+    
+    <script type="module" src="popup.js"></script>
+</body>
+</html>

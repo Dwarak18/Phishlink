@@ -1,0 +1,189 @@
+/* PhishShield Content Script Styles */
+
+/* Scan button styles */
+.phishshield-scan-btn {
+    background: linear-gradient(135deg, #1976D2, #1565C0) !important;
+    color: white !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    margin: 0 5px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s ease !important;
+    z-index: 1000 !important;
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.phishshield-scan-btn:hover {
+    background: linear-gradient(135deg, #1565C0, #0D47A1) !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
+    transform: translateY(-1px) !important;
+}
+
+.phishshield-scan-btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.phishshield-scan-btn:disabled {
+    background: #ccc !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Results overlay styles */
+#phishshield-overlay {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+}
+
+#phishshield-overlay * {
+    box-sizing: border-box !important;
+}
+
+#phishshield-overlay h2, 
+#phishshield-overlay h3, 
+#phishshield-overlay h4 {
+    margin: 0 0 10px 0 !important;
+    font-weight: 600 !important;
+}
+
+#phishshield-overlay ul {
+    margin: 5px 0 !important;
+    padding-left: 20px !important;
+}
+
+#phishshield-overlay li {
+    margin: 3px 0 !important;
+    line-height: 1.3 !important;
+}
+
+#phishshield-overlay button {
+    font-family: inherit !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+#phishshield-overlay button:hover {
+    opacity: 0.9 !important;
+}
+
+/* Notification styles for content scripts */
+.phishshield-notification {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    background: white !important;
+    border: 2px solid #1976D2 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+    z-index: 10001 !important;
+    max-width: 300px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important;
+    font-size: 14px !important;
+    animation: phishshield-slide-in 0.3s ease-out !important;
+}
+
+@keyframes phishshield-slide-in {
+    from {
+        transform: translateX(100%) !important;
+        opacity: 0 !important;
+    }
+    to {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+    }
+}
+
+.phishshield-notification.success {
+    border-color: #4CAF50 !important;
+}
+
+.phishshield-notification.warning {
+    border-color: #FF9800 !important;
+}
+
+.phishshield-notification.error {
+    border-color: #F44336 !important;
+}
+
+.phishshield-notification .close-btn {
+    position: absolute !important;
+    top: 5px !important;
+    right: 10px !important;
+    background: none !important;
+    border: none !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    color: #666 !important;
+}
+
+/* Gmail-specific adjustments */
+.nH .phishshield-scan-btn {
+    margin-left: 10px !important;
+}
+
+/* Outlook-specific adjustments */
+.ms-CommandBar .phishshield-scan-btn,
+[data-testid="toolbar"] .phishshield-scan-btn {
+    margin: 0 8px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    padding: 0 12px !important;
+}
+
+/* Floating button specific styles */
+.phishshield-scan-btn[style*="position: fixed"] {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+.phishshield-scan-btn[style*="position: fixed"]:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #phishshield-overlay {
+        width: calc(100% - 40px) !important;
+        left: 20px !important;
+        right: 20px !important;
+    }
+    
+    .phishshield-notification {
+        right: 10px !important;
+        left: 10px !important;
+        max-width: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .phishshield-scan-btn {
+        border: 2px solid white !important;
+    }
+    
+    #phishshield-overlay {
+        border-width: 3px !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .phishshield-scan-btn,
+    #phishshield-overlay,
+    .phishshield-notification {
+        transition: none !important;
+        animation: none !important;
+    }
+}
